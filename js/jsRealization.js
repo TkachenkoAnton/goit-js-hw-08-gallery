@@ -19,11 +19,13 @@ const addImg = refs.jsGallery.insertAdjacentHTML('beforeend', galleryImg.map(({ 
     .join(''));
 
 function addModalSrc(event) {
-    refs.jsLightboxImage.src = event.target.dataset.source; 
+    refs.jsLightboxImage.src = event.target.dataset.source;
+    refs.jsLightboxImage.alt = event.target.alt;
 }; 
 
 function cleanModalSrc() {
-    refs.jsLightboxImage.src = ''; 
+    refs.jsLightboxImage.src = '#';
+    refs.jsLightboxImage.alt = '';
 };
 
 function modalIsOpen(event) {
