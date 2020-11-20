@@ -3,6 +3,7 @@ import galleryImg from './gallery-items.js';
 const refs = {
     jsGallery: document.querySelector('ul.js-gallery'),
     jsLightbox: document.querySelector('.js-lightbox'),
+    lightboxOverlay: document.querySelector('.lightbox__overlay'),
     jsLightboxImage: document.querySelector('.lightbox__image'),
     closeLightbox: document.querySelector('button[data-action="close-lightbox"]'),
 }
@@ -39,11 +40,27 @@ function modalIsOpen(event) {
 } 
 
 function modalIsClose() {
+
     refs.jsLightbox.classList.remove('is-open');
 
     cleanModalSrc();
 } 
 
+function keyModalIsClose(event) {
+
+    if (refs.jsLightbox.classList.contains('is-open') && event.code === 'Escape') {
+        modalIsClose();
+    }
+    
+}; 
+
 refs.jsGallery.addEventListener('click', modalIsOpen);
 
+refs.lightboxOverlay.addEventListener('click', modalIsClose);
+
 refs.closeLightbox.addEventListener('click', modalIsClose);
+
+window.addEventListener('keydown', keyModalIsClose);
+
+
+
