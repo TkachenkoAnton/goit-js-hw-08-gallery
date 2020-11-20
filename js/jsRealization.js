@@ -31,10 +31,11 @@ function cleanModalSrc() {
 
 function modalIsOpen(event) {
     event.preventDefault();
-    
-    if (event.target.nodeName === 'IMG') {
-        refs.jsLightbox.classList.add('is-open')
+    if (event.target.nodeName !== 'IMG') {
+        return;   
     };
+
+    refs.jsLightbox.classList.add('is-open');
 
     addModalSrc(event);
 } 
