@@ -68,9 +68,9 @@ function keyPressNextPrev(event) {
             currentIndex = -1;
         };
         
-        refs.jsLightboxImage.src = `${(jsGalleryImg[currentIndex + 1]).dataset.source}`;
-        refs.jsLightboxImage.dataset.index = `${(jsGalleryImg[currentIndex + 1]).dataset.index}`;
-        refs.jsLightboxImage.alt = `${(jsGalleryImg[currentIndex + 1]).alt}`;
+        refs.jsLightboxImage.src = jsGalleryImg[currentIndex + 1].dataset.source;
+        refs.jsLightboxImage.dataset.index = jsGalleryImg[currentIndex + 1].dataset.index;
+        refs.jsLightboxImage.alt = jsGalleryImg[currentIndex + 1].alt;
     }
     
     else if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowLeft') {
@@ -79,9 +79,9 @@ function keyPressNextPrev(event) {
             currentIndex = galleryImg.length;
         };
 
-        refs.jsLightboxImage.src = `${(jsGalleryImg[currentIndex - 1]).dataset.source}`;
-        refs.jsLightboxImage.dataset.index = `${(jsGalleryImg[currentIndex - 1]).dataset.index}`;
-        refs.jsLightboxImage.alt = `${(jsGalleryImg[currentIndex - 1]).alt}`;
+        refs.jsLightboxImage.src = jsGalleryImg[currentIndex - 1].dataset.source;
+        refs.jsLightboxImage.dataset.index = jsGalleryImg[currentIndex - 1].dataset.index;
+        refs.jsLightboxImage.alt = jsGalleryImg[currentIndex - 1].alt;
     };
      
 };
