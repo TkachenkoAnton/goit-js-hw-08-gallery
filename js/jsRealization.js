@@ -58,28 +58,32 @@ function keyModalIsClose(event) {
     
 }; 
 
-function keyPressNext(event) {
+function keyPressNextPrev(event) {
     const jsGalleryImg = document.querySelectorAll('.gallery__image');
-    const currentIndex = Number(refs.jsLightboxImage.dataset.index);
+    let currentIndex = Number(refs.jsLightboxImage.dataset.index);
     
-    if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowRight' && currentIndex !== galleryImg.length - 1) {
+    if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowRight') {
+
+        if (currentIndex === galleryImg.length - 1) {
+            currentIndex = -1;
+        };
+        
         refs.jsLightboxImage.src = `${(jsGalleryImg[`${currentIndex + 1}`]).dataset.source}`;
         refs.jsLightboxImage.dataset.index = `${(jsGalleryImg[`${currentIndex + 1}`]).dataset.index}`;
         refs.jsLightboxImage.alt = `${(jsGalleryImg[`${currentIndex + 1}`]).alt}`;
-    };
-     
-};
+    }
+    
+    else if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowLeft') {
 
-function keyPressPrev(event) {
-    const jsGalleryImg = document.querySelectorAll('.gallery__image');
-    const currentIndex = Number(refs.jsLightboxImage.dataset.index);
+        if (currentIndex === 0) {
+            currentIndex = galleryImg.length;
+        };
 
-    if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowLeft' && currentIndex !== 0) {
         refs.jsLightboxImage.src = `${(jsGalleryImg[`${currentIndex - 1}`]).dataset.source}`;
         refs.jsLightboxImage.dataset.index = `${(jsGalleryImg[`${currentIndex - 1}`]).dataset.index}`;
         refs.jsLightboxImage.alt = `${(jsGalleryImg[`${currentIndex - 1}`]).alt}`;
     };
-    
+     
 };
 
 refs.jsGallery.addEventListener('click', modalIsOpen);
@@ -90,7 +94,7 @@ refs.closeLightbox.addEventListener('click', modalIsClose);
 
 window.addEventListener('keydown', keyModalIsClose);
 
-window.addEventListener('keydown', keyPressNext);
+window.addEventListener('keydown', keyPressNextPrev);
 
-window.addEventListener('keydown', keyPressPrev);
+window.addEventListener('keydown', keyPressNextPrev);
 
