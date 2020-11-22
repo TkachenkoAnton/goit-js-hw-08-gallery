@@ -40,7 +40,6 @@ function modalIsOpen(event) {
     };
 
     refs.jsLightbox.classList.add('is-open');
-
     addModalSrc(event);
 
 } 
@@ -48,7 +47,6 @@ function modalIsOpen(event) {
 function modalIsClose() {
 
     refs.jsLightbox.classList.remove('is-open');
-
     cleanModalSrc();
 } 
 
@@ -61,23 +59,28 @@ function keyModalIsClose(event) {
 }; 
 
 function keyPressNext(event) {
-    let jsGalleryImg = document.querySelectorAll('.gallery__image');
-    let currentIndex = refs.jsLightboxImage.dataset.index;
-    let nextImg = Number(currentIndex);
-
-    if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowRight') {
-        refs.jsLightboxImage.src = `${(jsGalleryImg[`${nextImg += 1}`]).dataset.source}`;
-    }
+    const jsGalleryImg = document.querySelectorAll('.gallery__image');
+    const currentIndex = Number(refs.jsLightboxImage.dataset.index);
     
+    if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowRight' && currentIndex !== galleryImg.length - 1) {
+        refs.jsLightboxImage.src = `${(jsGalleryImg[`${currentIndex + 1}`]).dataset.source}`;
+        refs.jsLightboxImage.dataset.index = `${(jsGalleryImg[`${currentIndex + 1}`]).dataset.index}`;
+        refs.jsLightboxImage.alt = `${(jsGalleryImg[`${currentIndex + 1}`]).alt}`;
+    };
+     
 };
 
-// function keyPressPrev(event) {
+function keyPressPrev(event) {
+    const jsGalleryImg = document.querySelectorAll('.gallery__image');
+    const currentIndex = Number(refs.jsLightboxImage.dataset.index);
 
-//     if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowLeft') {
-//         console.log('left')
-//     }
+    if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowLeft' && currentIndex !== 0) {
+        refs.jsLightboxImage.src = `${(jsGalleryImg[`${currentIndex - 1}`]).dataset.source}`;
+        refs.jsLightboxImage.dataset.index = `${(jsGalleryImg[`${currentIndex - 1}`]).dataset.index}`;
+        refs.jsLightboxImage.alt = `${(jsGalleryImg[`${currentIndex - 1}`]).alt}`;
+    };
     
-// };
+};
 
 refs.jsGallery.addEventListener('click', modalIsOpen);
 
@@ -89,5 +92,5 @@ window.addEventListener('keydown', keyModalIsClose);
 
 window.addEventListener('keydown', keyPressNext);
 
-// window.addEventListener('keydown', keyPressPrev);
+window.addEventListener('keydown', keyPressPrev);
 
