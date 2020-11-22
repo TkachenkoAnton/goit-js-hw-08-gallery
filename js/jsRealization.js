@@ -71,9 +71,8 @@ function keyPressNextPrev(event) {
         refs.jsLightboxImage.src = jsGalleryImg[currentIndex + 1].dataset.source;
         refs.jsLightboxImage.dataset.index = jsGalleryImg[currentIndex + 1].dataset.index;
         refs.jsLightboxImage.alt = jsGalleryImg[currentIndex + 1].alt;
-    }
-    
-    else if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowLeft') {
+        
+    } else if (refs.jsLightbox.classList.contains('is-open') && event.code === 'ArrowLeft') {
 
         if (currentIndex === 0) {
             currentIndex = galleryImg.length;
